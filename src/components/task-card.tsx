@@ -15,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useMutation } from "convex/react";
+import useUpdateTaskStatus from "@/hooks/use-update-task-status";
 import { api } from "../../convex/_generated/api";
 import type { Doc } from "../../convex/_generated/dataModel";
 
@@ -24,7 +25,7 @@ type TaskCardProps = {
 };
 
 function TaskCard({ task, isOverlay }: TaskCardProps) {
-  const updateStatus = useMutation(api.tasks.updateStatus);
+  const updateStatus = useUpdateTaskStatus();
   const removeTask = useMutation(api.tasks.remove);
 
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
